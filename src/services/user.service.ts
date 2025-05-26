@@ -44,7 +44,7 @@ class UserServiceClass {
     update(id: number, data: UpdateUserDto) {
         return this.repo.update({
             where: { id },
-            data: data
+            data: { ...data, updatedAt: new Date() }
         });
     }
 
@@ -55,7 +55,7 @@ class UserServiceClass {
     delete(id: number) {
         return this.repo.update({
             where: { id },
-            data: { deletedAt: new Date() }
+            data: { deletedAt: new Date(), updatedAt: new Date() }
         });
     }
 }
