@@ -1,4 +1,4 @@
-import {CreateUserDto, UpdateUserDto} from "../schemas/user.schema";
+import { createUserDto, updateUserDto } from "../schemas/user.schema";
 import prisma from "../prisma/client";
 
 class UserServiceClass {
@@ -32,7 +32,7 @@ class UserServiceClass {
      * Create a new user
      * @param data
      */
-    create(data: CreateUserDto) {
+    create(data: createUserDto) {
         return this.repo.create({ data: data });
     }
 
@@ -41,7 +41,7 @@ class UserServiceClass {
      * @param id
      * @param data
      */
-    update(id: number, data: UpdateUserDto) {
+    update(id: number, data: updateUserDto) {
         return this.repo.update({
             where: { id },
             data: { ...data, updatedAt: new Date() }

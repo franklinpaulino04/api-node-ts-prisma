@@ -1,7 +1,7 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import {LoginDto} from "../schemas/login.dto";
-import {CreateUserDto} from "../schemas/user.schema";
+import { loginDto } from "../schemas/login.dto";
+import { createUserDto } from "../schemas/user.schema";
 import prisma from "../prisma/client";
 
 export class AuthServiceClass {
@@ -10,7 +10,7 @@ export class AuthServiceClass {
      * Register a new user
      * @param data
      */
-     async register(data: CreateUserDto) {
+     async register(data: createUserDto) {
         const hashed = await bcrypt.hash(data.password, 10);
         return this.repo.create({
             data: {
@@ -25,7 +25,7 @@ export class AuthServiceClass {
      * Login a user
      * @param data
      */
-    async login(data: LoginDto) {
+    async login(data: loginDto) {
         const { email, password } = data;
         const user = await this.repo.findUnique({
             where: {

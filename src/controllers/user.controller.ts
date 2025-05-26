@@ -2,8 +2,8 @@ import { Request, Response } from 'express';
 
 import { UserService } from '../services/user.service';
 
-import {toDTO, toDTOList} from "../utils/transform-response";
-import {userResponseDTO} from "../schemas/user.schema";
+import { toDTO, toDTOList } from "../utils/transform-response";
+import { userResponseSchema } from "../schemas/user.schema";
 
 export class UserController {
 
@@ -26,7 +26,7 @@ export class UserController {
             const users = await UserService.findAll({ page: +page, limit: +limit });
             res.json({
                 success: true,
-                data: toDTOList(userResponseDTO, users.data),
+                data: toDTOList(userResponseSchema, users.data),
                 meta: users.meta,
             });
         } catch {
@@ -56,7 +56,7 @@ export class UserController {
 
             res.json({
                 success: true,
-                data: toDTO(userResponseDTO, user),
+                data: toDTO(userResponseSchema, user),
             });
         } catch {
             res.status(500).json({
@@ -76,7 +76,7 @@ export class UserController {
             const user = await UserService.create(req.body);
             res.status(201).json({
                 success: true,
-                data: toDTO(userResponseDTO, user),
+                data: toDTO(userResponseSchema, user),
             });
         } catch (error) {
             res.status(500).json({
@@ -113,7 +113,7 @@ export class UserController {
 
             res.json({
                 success: true,
-                data: toDTO(userResponseDTO, user),
+                data: toDTO(userResponseSchema, user),
             });
         } catch {
             res.status(500).json({
