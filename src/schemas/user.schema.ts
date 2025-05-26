@@ -24,10 +24,10 @@ export const userResponseDTO = z.object({
     id: z.number(),
     name: z.string(),
     email: z.string(),
-    role: z.enum(['user', 'admin']),
-    isActive: z.boolean(),
-    createdAt: z.date(),
-    updatedAt: z.date(),
+    role: z.enum(['user', 'admin']).nullable(),
+    isActive: z.boolean().nullable(),
+    createdAt: z.date().nullable(),
+    updatedAt: z.date().nullable(),
 });
 
 export type UserResponseDto = z.infer<typeof userResponseDTO>;
