@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { AuthService } from '../services/auth.service';
 import { toDTO } from "../utils/transform-response";
-import { userResponseDTO } from "../schemas/user.schema";
+import { userResponseSchema } from "../schemas/user.schema";
 
 export class AuthController {
 
@@ -16,7 +16,7 @@ export class AuthController {
             res.status(201).json({
                 success: true,
                 message: 'User registered successfully',
-                data: toDTO(userResponseDTO, user),
+                data: toDTO(userResponseSchema, user),
             });
         } catch (e) {
             res.status(400).json({ success: false, message: 'Registration failed' });
@@ -34,7 +34,7 @@ export class AuthController {
             res.json({
                 success: true,
                 message: 'Login successful',
-                data: toDTO(userResponseDTO, data.user),
+                data: toDTO(userResponseSchema, data.user),
                 accessToken: data.token,
             });
         } catch (e) {
